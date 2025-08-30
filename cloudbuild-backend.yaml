@@ -23,7 +23,11 @@ steps:
         "--command",
         "./launch",
         "--update-env-vars",
-        "GOOGLE_APPLICATION_CREDENTIALS=/secrets/SERVICE_ACCOUNT,WALLY_storage={type=\"gcs\",bucket=\"[bulk-games-wally-bucket]\"},WALLY_INDEX_URL=\"https://github.com/BulkGames/wally-index\"",
+        "GOOGLE_APPLICATION_CREDENTIALS=/secrets/SERVICE_ACCOUNT",
+        "--update-env-vars",
+        "WALLY_INDEX_URL=\"https://github.com/BulkGames/wally-index\"",
+        "--update-env-vars",
+        "WALLY_storage={\"type\":\"gcs\",\"bucket\":\"bulk-games-wally-bucket\"}",
         "--update-secrets",
         "WALLY_github_token=WALLY_GITHUB_TOKEN:latest,WALLY_auth=WALLY_ROCKET_AUTH:latest,/secrets/SERVICE_ACCOUNT=WALLY_SERVICE_ACCOUNT:latest"
       ]
