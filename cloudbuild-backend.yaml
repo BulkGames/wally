@@ -18,6 +18,18 @@ steps:
         "gcr.io/bulk-games-wally/wally-backend:540e17d56ea228aabe0d94b097ab45f90461b1d5",
         "--region",
         "us-central1",
+        "--platform",
+        "managed",
+        "--command",
+        "./launch",
+        "--update-env-vars",
+        "GOOGLE_APPLICATION_CREDENTIALS=/secrets/SERVICE_ACCOUNT,WALLY_storage={type=\"gcs\",bucket=\"bulk-games-wally-bucket\"},WALLY_INDEX_URL=\"https://github.com/BulkGames/wally-index\"",
+        "--update-secrets",
+        "WALLY_github_token=WALLY_GITHUB_TOKEN:latest,WALLY_auth=WALLY_ROCKET_AUTH:latest",
+        "--add-volume",
+        "name=secrets,type=secret,secret=WALLY_SERVICE_ACCOUNT",
+        "--add-volume-mount",
+        "volume=secrets,mount-path=/secrets"
       ]
 
 timeout: 900s
