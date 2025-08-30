@@ -11,7 +11,7 @@ steps:
       - "--platform"
       - "managed"
       - "--command"
-      - "./launch"
+      - "env"
       - "--env-vars-file"
       - "env-vars.yaml"
       - "--update-secrets"
