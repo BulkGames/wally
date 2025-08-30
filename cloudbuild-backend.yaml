@@ -21,8 +21,7 @@ steps:
         "--platform",
         "managed",
         "--command",
-        "./launch",
-        "--allow-unauthenticated",
+        "./launch"
       ]
 
 timeout: 900s
