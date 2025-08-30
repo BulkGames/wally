@@ -1,37 +1,25 @@
 steps:
-# Build the container image
-#- name: 'gcr.io/cloud-builders/docker'
-# args: ['build', '-t', 'gcr.io/bulk-games-wally/wally-backend:$COMMIT_SHA', '-f', 'wally-registry-backend/Dockerfile', '.']
-
-# Push the container image to Container Registry
-#- name: 'gcr.io/cloud-builders/docker'
-#  args: ['push', 'gcr.io/bulk-games-wally/wally-backend:$COMMIT_SHA']
-
-  # Deploy container image to Cloud Run
   - name: "gcr.io/cloud-builders/gcloud"
     args:
-      [
-        "run",
-        "deploy",
-        "wally-backend",
-        "--image",
-        "gcr.io/bulk-games-wally/wally-backend:540e17d56ea228aabe0d94b097ab45f90461b1d5",
-        "--region",
-        "us-central1",
-        "--platform",
-        "managed",
-        "--command",
-        "./launch",
-        "--update-env-vars",
-        "GOOGLE_APPLICATION_CREDENTIALS=/secrets/SERVICE_ACCOUNT",
-        "--update-env-vars",
-        "WALLY_INDEX_URL=\"https://github.com/BulkGames/wally-index\"",
-        "--update-env-vars",
-        "WALLY_storage={\"type\":\"gcs\",\"bucket\":\"bulk-games-wally-bucket\"}",
-        "--update-secrets",
-        "WALLY_github_token=WALLY_GITHUB_TOKEN:latest,WALLY_auth=WALLY_ROCKET_AUTH:latest,/secrets/SERVICE_ACCOUNT=WALLY_SERVICE_ACCOUNT:latest"
-      ]
-
+      - "run"
+      - "deploy"
+      - "wally-backend"
+      - "--image"
+      - "gcr.io/bulk-games-wally/wally-backend:540e17d56ea228aabe0d94b097ab45f90461b1d5"
+      - "--region"
+      - "us-central1"
+      - "--platform"
+      - "managed"
+      - "--command"
+      - "./launch"
+      - "--update-env-vars"
+      - "GOOGLE_APPLICATION_CREDENTIALS=/secrets/SERVICE_ACCOUNT"
+      - "--update-env-vars"
+      - 'WALLY_INDEX_URL="https://github.com/BulkGames/wally-index"'
+      - "--update-env-vars"
+      - 'WALLY_storage={"type":"gcs","bucket":"bulk-games-wally-bucket"}'
+      - "--update-secrets"
+      - "WALLY_github_token=WALLY_GITHUB_TOKEN:latest,WALLY_auth=WALLY_ROCKET_AUTH:latest,/secrets/SERVICE_ACCOUNT=WALLY_SERVICE_ACCOUNT:latest"
 timeout: 900s
 options:
   machineType: 'E2_HIGHCPU_8'
