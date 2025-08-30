@@ -20,6 +20,8 @@ steps:
         "us-central1",
         "--platform",
         "managed",
+        "--port",
+        "8000",
         "--command",
         "./launch"
       ]
