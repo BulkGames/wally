@@ -23,7 +23,7 @@ steps:
         "--port",
         "8000",
         "--command",
-        "./launch"
+        "env"
       ]
 
 timeout: 900s
