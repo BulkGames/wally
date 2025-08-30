@@ -5,7 +5,7 @@ steps:
       - "deploy"
       - "wally-backend"
       - "--image"
-      - "gcr.io/bulk-games-wally/wally-backend:$COMMIT_SHA"
+      - "gcr.io/bulk-games-wally/wally-backend:540e17d56ea228aabe0d94b097ab45f90461b1d5"
       - "--region"
       - "us-central1"
       - "--platform"
